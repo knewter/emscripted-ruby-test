@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      emscripted-ruby test
+    </title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src='ruby.js'></script>
+  </head>
+  <body>
+    Some content!
+    <h3>Input</h3>
+    <textarea id='input'></textarea>
+    <button id='run'>Run!</button>
+    <h3>Output</h3>
+    <pre>
+<code id='output'>
+</code>
+    </pre>
+    <script>
+      Ruby.initialize(window.prompt,
+        function(a){
+          if(a){
+            $('#output').append(String.fromCharCode(a));
+          }
+          //Ruby.stringify(a);
+        }, 
+        function(a){
+          //console.log(Ruby.stringify(a));
+        }
+      );
+      $('#run').on('click', function(){
+        var code = $('#input').val();
+        $('#input').value='';
+        Ruby.eval(code);
+      });
+    </script>
+  </body>
+</html>
